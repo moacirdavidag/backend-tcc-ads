@@ -1,0 +1,48 @@
+const { gql } = require('graphql-modules');
+
+module.exports = gql`
+
+    type Query {
+        cursos: [Curso]!,
+        cursoPorCodigo(codigo: Int!): [Curso]!,
+        cursosPorModalidade(modalidade: Modalidade!): [Curso]!,
+        cursosPorNaturezaParticipacao(participacao: Participacao!): [Curso]!
+    }
+
+    type Curso {
+        url: String!,
+        uuid: ID!,
+        codigo: Int!,
+        descricao: String!,
+        diretoria: String!,
+        natureza_participacao: String!,
+        eixo: String, #alguns cursos retornam null - deixa?
+        modalidade: String!,
+        resolucao_criacao: String, #nem todos cursos tem esse campo preenchido
+        coordenador: String #nem todos os cursos tem esse campo preenchido,
+        matriz_vingente: CursoMatrizVingente,
+        matrizes: [String!]!,
+        ch: Int! #int é o melhor tipo?
+    }
+
+    type CursoMatrizVingente {
+        url: String!,
+        uuid: ID!
+    }
+
+    enum Modalidade {
+        TECNOLOGIA,
+        LICENCIATURA,
+        BACHARELADO,
+        ESPECIALIZACAO,
+        SUBSEQUENTE,
+        INTEGRADO,
+        INTEGRADO_EJA
+    }
+
+    enum Participacao {
+        PRESENCIAL,
+        EAD
+    }
+
+`;

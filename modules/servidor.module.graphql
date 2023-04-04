@@ -1,0 +1,10 @@
+const { createModule } = require('graphql-modules');
+const Servidor = require('../schemas/servidor.type.graphql');
+const ServidorResolvers = require('../resolvers/servidor.resolver.graphql.js');
+
+module.exports = createModule({
+    id: 'servidor-modulo',
+    dirname: __dirname,
+    typeDefs: [Servidor],
+    resolvers: [ServidorResolvers]
+  });

@@ -1,0 +1,58 @@
+const { gql } = require('graphql-modules');
+
+module.exports = gql`
+
+    type ProgramaAssistencia {
+        url: String!,
+        uuid: ID!,
+        titulo: String!,
+        numero_atendimento: Int!,
+        #atendimento_por_campus: AtendimentoPorCampus,
+        #periodos_inscricao_por_campus: PeriodoInscricaoPorCampus
+    } 
+
+    # type AtendimentoPorCampus {
+    #   REITORIA: Int,
+    #   CAMPUS CABEDELO: Int,
+    #   CAMPUS CAJAZEIRAS: Int,
+    #   CAMPUS CAMPINA GRANDE: Int,
+    #   CAMPUS GUARABIRA: Int,
+    #   CAMPUS PRINCESA ISABEL: Int,
+    #   CAMPUS MONTEIRO: Int,
+    #   CAMPUS PICUÍ: Int,
+    #   CAMPUS SANTA RITA: Int,
+    #   CAMPUS CATOLÉ DO ROCHA: Int,
+    #   CAMPUS ITAPORANGA: Int,
+    #   CAMPUS JOÃO PESSOA: Int,
+    #   CAMPUS SOUSA: Int,
+    #   CAMPUS PATOS: Int,
+    #   CAMPUS ITABAIANA: Int        
+    # }
+
+    # type PeriodoInscricaoPorCampus {
+    #     REITORIA: [DadosProgramaAssistencia]!,
+    #     CAMPUS CABEDELO: [DadosProgramaAssistencia]!,
+    #     CAMPUS CAJAZEIRAS: [DadosProgramaAssistencia]!,
+    #     CAMPUS CAMPINA GRANDE: [DadosProgramaAssistencia]!,
+    #     CAMPUS GUARABIRA: [DadosProgramaAssistencia]!,
+    #     CAMPUS PRINCESA ISABEL: [DadosProgramaAssistencia]!,
+    #     CAMPUS MONTEIRO: [DadosProgramaAssistencia]!,
+    #     CAMPUS PICUÍ: [DadosProgramaAssistencia]!,
+    #     CAMPUS SANTA RITA: [DadosProgramaAssistencia]!,
+    #     CAMPUS CATOLÉ DO ROCHA: [DadosProgramaAssistencia]!,
+    #     CAMPUS ITAPORANGA: [DadosProgramaAssistencia]!,
+    #     CAMPUS JOÃO PESSOA: [DadosProgramaAssistencia]!,
+    #     CAMPUS SOUSA: [DadosProgramaAssistencia]!,
+    #     CAMPUS PATOS: [DadosProgramaAssistencia]!,
+    #     CAMPUS ITABAIANA: [DadosProgramaAssistencia]!,
+    # }
+    
+    type DadosProgramaAssistencia {
+        titulo: String!,
+        termino: String!,
+        inicio: String!
+    }
+
+    #COMO FAZER A CONSULTA DOS CAMPOS COM ESPAÇO EM BRANCO?
+
+`;

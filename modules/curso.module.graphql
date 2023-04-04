@@ -1,0 +1,10 @@
+const { createModule } = require('graphql-modules');
+const Curso = require('../schemas/curso.type.graphql');
+const CursoResolvers = require('../resolvers/curso.resolver.graphql.js');
+
+module.exports = createModule({
+    id: 'curso-modulo',
+    dirname: __dirname,
+    typeDefs: [Curso],
+    resolvers: [CursoResolvers]
+  });

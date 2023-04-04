@@ -1,0 +1,29 @@
+const { gql } = require('graphql-modules');
+
+module.exports = gql`
+
+    type Query {
+        patrimonio: [Patrimonio]!,
+        patrimonioPorNumero(numero: Int!): Patrimonio!,
+        patrimonioPorCampus(nomeCampus: String!): [Patrimonio]!
+    }
+
+    type Patrimonio {
+        url: String!,
+        uuid: ID!,
+        numero: Int!,
+        descricao: String!,
+        valor_inicial: Float!,
+        valor_liquido_contabil: Float,
+        situacao: String,
+        estado_conservacao: String,
+        campus: CampusPatrimonio
+    }
+
+    type CampusPatrimonio {
+        url: String!,
+        uuid: ID!,
+        nome: String
+    }
+
+`;

@@ -1,0 +1,53 @@
+const { gql } = require('graphql-modules');
+
+module.exports = gql`
+
+    type Query {
+        servidores: [Servidor],
+        servidorPorMatricula(matricula: String!): Servidor!,
+        servidoresPorCargo(cargo: String!): [Servidor]!,
+        servidorPorNome(nome: String!): Servidor!
+    }
+
+    type Servidor {
+        url: String!,
+        uuid: ID!,
+        nome: String!,
+        matricula: String,
+        lotacao_siap: LotacaoSiap,
+        lotacao_suap: LotacaoSuap,
+        cargo_emprego: String,
+        situacao: SituacaoServidor,
+        setor_exercicio: SetorExercicio,
+        jornada_trabalho: String,
+        funcao_codigo: Int
+        disciplina_ingresso: String
+    }
+
+    type LotacaoSiap {
+        url: String,
+        uuid: String,
+        sigla: String,
+        nome: String
+    }
+
+    type LotacaoSuap {
+        url: String,
+        uuid: String,
+        sigla: String,
+        nome: String
+    }
+
+    type SituacaoServidor {
+        codigo: Int,
+        nome: String
+    }
+
+    type SetorExercicio {
+        url: String,
+        uuid: ID,
+        sigla: String,
+        nome: String
+    }
+
+`;

@@ -1,0 +1,10 @@
+const { createModule } = require('graphql-modules');
+const Bolsa = require('../schemas/bolsa.type.graphql');
+const BolsaResolvers = require('../resolvers/bolsa.resolver.graphql.js');
+
+module.exports = createModule({
+    id: 'bolsa-modulo',
+    dirname: __dirname,
+    typeDefs: [Bolsa],
+    resolvers: [BolsaResolvers]
+  });

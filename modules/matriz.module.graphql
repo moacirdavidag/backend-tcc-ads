@@ -1,0 +1,10 @@
+const { createModule } = require('graphql-modules');
+const Matriz = require('../schemas/matriz-curso.type.graphql');
+const MatrizResolvers = require('../resolvers/matriz.resolver.graphql.js');
+
+module.exports = createModule({
+    id: 'matriz-modulo',
+    dirname: __dirname,
+    typeDefs: [Matriz],
+    resolvers: [MatrizResolvers]
+});

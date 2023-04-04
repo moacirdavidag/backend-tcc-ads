@@ -1,0 +1,28 @@
+const { gql } = require('graphql-modules');
+
+module.exports = gql`
+
+    type Query {
+        campi: [Campi]!,
+        campusPorSigla(sigla: String!): Campi!,
+        campusPorNome(nome: String!): Campi!
+    }
+
+    type Campi {
+        url: String!,
+        uuid: ID!,
+        nome: String!,
+        sigla: String!,
+        cep: String!,
+        telefone: String,
+        cnpj: String!,
+        endereco: String!,
+        municipio: MunicipioCampi
+    }
+
+    type MunicipioCampi {
+        nome: String!,
+        uf: String!
+    }
+
+`;

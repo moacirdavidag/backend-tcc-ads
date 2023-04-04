@@ -1,0 +1,28 @@
+const { gql } = require('graphql-modules');
+
+module.exports = gql`
+        type Query {
+            bolsas: [Bolsa]!,
+            bolsasPorCategoria(categoria: Categoria!): [Bolsa]!,
+            bolsaPorAluno(nome: String!): [Bolsa]!
+        }
+
+        type Bolsa {
+            url: String!,
+            uuid: ID!,
+            categoria_bolsa: String!,
+            aluno: String!,
+            valor_bolsa: Float,
+            setor: String!
+        }
+
+        enum Categoria {
+            TRANSPORTE_ESTUDANTIL,
+            ALIMENTACAO,
+            FOTOCOPIA,
+            MORADIA,
+            ALMOCO,
+            JANTA
+        }
+
+`;

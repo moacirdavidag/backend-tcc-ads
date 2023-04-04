@@ -1,0 +1,21 @@
+const { gql } = require('graphql-modules');
+
+module.exports = gql`
+    type Query {
+        versoes: [Versao]!,
+    }
+
+    type Versao {
+        project: String!,
+        author: String!,
+        notes: [Notes]!
+    }
+
+    type Notes {
+        author: String!,
+        type: String!,
+        comment: String!,
+        created_at: String!,
+        modified_at: String!
+    }
+`;

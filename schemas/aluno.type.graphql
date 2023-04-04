@@ -1,0 +1,45 @@
+const { gql } = require('graphql-modules');
+
+module.exports = gql`
+        type Query {
+            alunos: [Aluno],
+            alunosPorMatricula(matricula: String!): Aluno!,
+            alunosPorCota(cota: Cota!): [Aluno],
+            alunosPorSituacao(situacao: Situacao!): [Aluno],
+            alunosPorCurso(curso: String!): [Aluno]
+        }
+
+        type Aluno {
+            url: String!,
+            uuid: ID!,
+            nome: String!,
+            matricula: String!,
+            curso: CursoAluno!,
+            situacao: String!, 
+            cota: String 
+        }
+
+        type CursoAluno {
+            url: String!,
+            uuid: ID!,
+            nome: String!
+        }
+
+        enum Cota {
+            ESCOLA_PUBLICA,
+            ESCOLA_PUBLICA_PPI,
+            NENHUMA,
+        }
+
+        enum Situacao {
+            MATRICULADO,
+            EVASAO,
+            CANCELADO,
+            FORMADO,
+            CONCLUIDO,
+            CANCELAMENTO_COMPULSORIO,
+            TRANCADO,
+            TRANCADO_VOLUNTARIAMENTE,
+            TRANSFERIDO_EXTERNO
+        }
+`;

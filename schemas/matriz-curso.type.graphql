@@ -1,0 +1,28 @@
+const { gql } = require('graphql-modules');
+
+module.exports = gql`
+
+    type Query {
+        matrizes: [MatrizCurso]!,
+        matrizPorCurso(curso: String!): MatrizCurso
+    }
+
+    type MatrizCurso {
+        url: String!,
+        uuid: ID!,
+        descricao: String!,
+        ano_criacao: Int,
+        periodo_criacao: Int,
+        componentes: [ComponentesMatriz],
+        ch_matriz: Int
+    }
+
+    type ComponentesMatriz {
+        uuid: ID!,
+        descricao: String,
+        periodo_letivo: Int,
+        ch_patrica: Int,
+        ch_presencial: Int
+    }
+
+`;

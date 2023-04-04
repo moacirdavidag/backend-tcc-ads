@@ -1,0 +1,10 @@
+const { createModule } = require('graphql-modules');
+const Aluno = require('../schemas/aluno.type.graphql');
+const AlunoResolvers = require('../resolvers/aluno.resolver.graphql.js');
+
+module.exports = createModule({
+    id: 'aluno-modulo',
+    dirname: __dirname,
+    typeDefs: [Aluno],
+    resolvers: [AlunoResolvers]
+  });

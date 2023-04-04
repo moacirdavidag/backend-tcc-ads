@@ -1,0 +1,18 @@
+const { gql } = require('graphql-modules');
+
+module.exports = gql`
+    type Query {
+
+    }
+
+    type Mapa {
+        url: String!,
+        uuid: ID!,
+        url: String!,
+        periodo: String,
+        ano: Int,
+        semestre: Int,
+        carga_horaria: Int,
+        
+    }
+`;

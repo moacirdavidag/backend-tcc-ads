@@ -1,0 +1,10 @@
+const { createModule } = require('graphql-modules');
+const Campi = require('../schemas/campi.type.graphql');
+const CampiResolvers = require('../resolvers/campi.resolver.graphql.js');
+
+module.exports = createModule({
+    id: 'campi-modulo',
+    dirname: __dirname,
+    typeDefs: [Campi],
+    resolvers: [CampiResolvers]
+  });

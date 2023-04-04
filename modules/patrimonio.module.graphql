@@ -1,0 +1,10 @@
+const { createModule } = require('graphql-modules');
+const Patrimonio = require('../schemas/patrimonio.type.graphql');
+const PatrimonioResolvers = require('../resolvers/patrimonio.resolver.graphql.js');
+
+module.exports = createModule({
+    id: 'patrimonio-modulo',
+    dirname: __dirname,
+    typeDefs: [Patrimonio],
+    resolvers: [PatrimonioResolvers]
+});

@@ -1,0 +1,38 @@
+const { gql } = require('graphql-modules');
+
+module.exports = gql`
+
+    type Query {
+        setores: [Setor]!,
+        setorPorNome(nome: String!): Setor,
+        setorPorSigla(sigla: String!): Setor,
+        setorPorUnidadeOrganizacional(nome: String!): [Setor]!
+    }
+
+    type Setor {
+        url: String!,
+        uuid: ID!,
+        nome: String!,
+        sigla: String!,
+        is_siape: Boolean!,
+        superior: Superior,
+        setores_filho: [String],
+        total_servidores: Int!,
+        unidade_organizacional: UnidadeOrganizacional
+    }
+
+    type UnidadeOrganizacional {
+        url: String!,
+        uuid: ID!,
+        nome: String!,
+        sigla: String!
+    }
+
+    type Superior {
+        url: String,
+        uuid: String,
+        sigla: String,
+        nome: String
+    }
+
+`;

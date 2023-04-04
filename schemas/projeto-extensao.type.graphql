@@ -1,0 +1,40 @@
+const { gql } = require('graphql-modules');
+
+module.exports = gql`
+    type Query {
+        projetosDeExtensao: [ProjetoExtensao]!
+        projetosDeExtensaoPorFoco(foco: String!): [ProjetoExtensao]!,
+        projetosDeExtensaoPorArea(area: String!): [ProjetoExtensao]!,
+        projetosDeExtensaoPorUO(nome: String!): [ProjetoExtensao]!
+    }
+
+    type ProjetoExtensao {
+        url: String!,
+        uuid: String!,
+        titulo: String!,
+        uo: UO, 
+        inicio_execucao: String!,
+        fim_execucao: String!,
+        foco_tecnologico: String,
+        area_conhecimento: String!,
+        participantes: [Participantes],
+        valor_total_executado: Float,
+        aprovado: Boolean,
+        resumo: String,
+        justificativa: String,
+        resultados_esperados: String
+    }
+
+    type UO {
+        url: String!,
+        uuid: String!,
+        nome: String!, 
+        sigla: String!
+    }
+
+    type Participantes {
+        uuid: String!,
+        nome: String!
+    }
+
+`;

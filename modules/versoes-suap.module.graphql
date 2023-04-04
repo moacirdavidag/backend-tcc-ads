@@ -1,0 +1,10 @@
+const { createModule } = require('graphql-modules');
+const Versao = require('../schemas/versoes-suap.type.graphql');
+const VersaoResolvers = require('../resolvers/versoes-suap.resolver.graphql.js');
+
+module.exports = createModule({
+    id: "versoes-suap-modulo",
+    dirname: __dirname,
+    typeDefs: [Versao],
+    resolvers: [VersaoResolvers]
+});

@@ -1,0 +1,40 @@
+const { gql } = require('graphql-modules');
+
+module.exports = gql`
+    type Query {
+        projetosDePesquisa: [ProjetoPesquisa]!,
+        projetoDePesquisaPorTitulo(titulo: String!): ProjetoPesquisa,
+        projetosDePesquisaPorUO(uo: String!): [ProjetoPesquisa]!,
+        projetosDePesquisaPorArea(area: String!): [ProjetoPesquisa]!,
+        projetosDePesquisaPorFoco(foco: String!): [ProjetoPesquisa]!
+    }
+
+    type ProjetoPesquisa {
+        url: String!,
+        uuid: ID!,
+        titulo: String!,
+        uo: UO!,
+        inicio_execucao: String,
+        fim_execucao: String,
+        foco_tecnologico: String,
+        area_conhecimento: String,
+        resumo: String,
+        justificativa: String,
+        participantes: [Participantes]!,
+        valor_total_executado: Float,
+        aprovado: Boolean
+    }
+
+    type UO {
+        url: String!,
+        uuid: String!,
+        nome: String!, 
+        sigla: String!
+    }
+
+    type Participantes {
+        uuid: String!,
+        nome: String!
+    }
+
+`;

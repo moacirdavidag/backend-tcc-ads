@@ -1,0 +1,10 @@
+const { createModule } = require('graphql-modules');
+const Setor = require('../schemas/setor.type.graphql');
+const SetorResolvers = require('../resolvers/setor.resolver.graphql.js');
+
+module.exports = createModule({
+    id: "setor-modulo",
+    dirname: __dirname,
+    typeDefs: [Setor],
+    resolvers: [SetorResolvers]
+});
