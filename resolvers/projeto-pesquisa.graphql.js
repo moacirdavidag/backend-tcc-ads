@@ -3,8 +3,8 @@ const ProjetoPesquisa = require('../models/projeto-pesquisa');
 module.exports = {
     Query: {
         projetosDePesquisa: async (_, args) => {
-            console.log(await ProjetoPesquisa.find({}));
-            return await ProjetoPesquisa.find({});
+            const {offset, limit} = args;
+            return await ProjetoPesquisa.find({}).skip(offset).limit(limit);
         },
         projetoDePesquisaPorTitulo: async (_, args) => {
             return await ProjetoPesquisa.find({titulo: args.titulo});

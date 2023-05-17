@@ -3,7 +3,7 @@ const { gql } = require('graphql-modules');
 module.exports = gql`
 
     type Query {
-        setores: [Setor]!,
+        setores(offset: Int, limit: Int): [Setor]!,
         setorPorNome(nome: String!): Setor,
         setorPorSigla(sigla: String!): Setor,
         setorPorUnidadeOrganizacional(nome: String!): [Setor]!

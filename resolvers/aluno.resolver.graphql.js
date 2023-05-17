@@ -2,8 +2,12 @@ const Aluno = require('../models/aluno');
 
 module.exports = {
     Query: {
-        alunos: async () => {
-            return await Aluno.find({});
+        alunos: async (_, args) => {
+            const {offset, limit} = args;
+            const alunos = await Aluno.find({})
+            .skip(offset)
+            .limit(limit);
+            return alunos;
         },
         alunosPorMatricula: (async (_, args) => {
             return await Aluno.findOne({matricula: args.matricula});

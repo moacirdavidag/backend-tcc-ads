@@ -2,7 +2,7 @@ const { gql } = require('graphql-modules');
 
 module.exports = gql`
         type Query {
-            alunos: [Aluno],
+            alunos(offset: Int, limit: Int): [Aluno],
             alunosPorMatricula(matricula: String!): Aluno!,
             alunosPorCota(cota: Cota!): [Aluno],
             alunosPorSituacao(situacao: Situacao!): [Aluno],
