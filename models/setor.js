@@ -1,4 +1,4 @@
-const mongoose = require ('mongoose');
+import mongoose from '../database/mongo';
 
 const setorSchema = new mongoose.Schema({
     uuid: {type: String, required: true},

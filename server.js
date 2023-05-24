@@ -1,7 +1,6 @@
-const { ApolloServer } = require('apollo-server');
-require('dotenv').config();
+import { ApolloServer } from 'apollo-server';
 
-const application = require('./application');
+import application from './application';
 
 const schema = application.createSchemaForApollo();
 

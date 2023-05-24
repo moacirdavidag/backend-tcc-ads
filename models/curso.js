@@ -1,4 +1,4 @@
-const mongoose = require('../database/mongo');
+import mongoose from '../database/mongo';
 
 const cursoSchema = new mongoose.Schema({
     url: {type: String, required: true},

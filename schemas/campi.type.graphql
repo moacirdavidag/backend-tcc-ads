@@ -3,7 +3,7 @@ const { gql } = require('graphql-modules');
 module.exports = gql`
 
     type Query {
-        campi: [Campi]!,
+        campi (offset: Int, limit: Int): [Campi]!,
         campusPorSigla(sigla: String!): Campi!,
         campusPorNome(nome: String!): Campi!
     }
@@ -23,6 +23,11 @@ module.exports = gql`
     type MunicipioCampi {
         nome: String!,
         uf: String!
+    }
+
+    input CampiInput {
+        nome: String,
+        sigla: String
     }
 
 `;

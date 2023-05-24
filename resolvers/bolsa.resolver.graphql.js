@@ -2,8 +2,9 @@ const Bolsa = require('../models/bolsa');
 
 module.exports = {
     Query: {
-        bolsas: async () => {
-            return await Bolsa.find({})
+        bolsas: async (_, args) => {
+            const { offset, limit } = args;
+            return await Bolsa.find({}).skip(offset).limit(limit);
         },
         bolsasPorCategoria: async (_, args) => {
             const CATEGORIA = args.categoria;

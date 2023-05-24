@@ -3,7 +3,7 @@ const { gql } = require('graphql-modules');
 module.exports = gql`
 
     type Query {
-        patrimonio: [Patrimonio]!,
+        patrimonio(offset: Int, limit: Int): [Patrimonio]!,
         patrimonioPorNumero(numero: Int!): Patrimonio!,
         patrimonioPorCampus(nomeCampus: String!): [Patrimonio]!
     }

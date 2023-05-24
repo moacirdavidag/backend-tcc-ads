@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from '../database/mongo';
 
 const matrizSchema = new mongoose.Schema({
     url: {type: String, required: true},

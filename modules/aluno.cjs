@@ -1,10 +1,10 @@
 const { createModule } = require('graphql-modules');
-const Aluno = require('../schemas/aluno.type.graphql');
-const AlunoResolvers = require('../resolvers/aluno.resolver.graphql.js');
+const { alunoSchema } = require('../schemas/aluno.js');
+const { aluno: AlunoResolvers } = require('../resolvers/aluno.js');
 
 module.exports = createModule({
     id: 'aluno-modulo',
     dirname: __dirname,
-    typeDefs: [Aluno],
+    typeDefs: [alunoSchema],
     resolvers: [AlunoResolvers]
   });

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from '../database/mongo';
 
 const servidorSchema = new mongoose.Schema({
     url: {type: String, required: true},

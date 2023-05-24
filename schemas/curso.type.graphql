@@ -3,7 +3,7 @@ const { gql } = require('graphql-modules');
 module.exports = gql`
 
     type Query {
-        cursos: [Curso]!,
+        cursos (offset: Int, limit: Int): [Curso]!,
         cursoPorCodigo(codigo: Int!): [Curso]!,
         cursosPorModalidade(modalidade: Modalidade!): [Curso]!,
         cursosPorNaturezaParticipacao(participacao: Participacao!): [Curso]!
@@ -43,6 +43,12 @@ module.exports = gql`
     enum Participacao {
         PRESENCIAL,
         EAD
+    }
+
+    input CursoInput {
+        codigo: Int,
+        natureza_participacao: Participacao,
+        modalidade: Modalidade
     }
 
 `;

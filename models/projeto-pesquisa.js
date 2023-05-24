@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from '../database/mongo';
 
 const projetoPesquisaSchema = new mongoose.Schema({
         url: {type: String},

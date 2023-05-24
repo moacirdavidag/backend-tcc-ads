@@ -1,5 +1,7 @@
-const mongoose = require('mongoose');
-require('dotenv').config();
+import mongoose from 'mongoose';
+import { config } from 'dotenv';
+
+config();
 
 main().catch(err => console.log(err));
 
@@ -11,4 +13,4 @@ async function main() {
   }
 }
 
-module.exports = mongoose;
+export default mongoose;

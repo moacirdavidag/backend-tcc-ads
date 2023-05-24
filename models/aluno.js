@@ -1,4 +1,4 @@
-const mongoose = require('../database/mongo');
+import mongoose from '../database/mongo.js';
 
 const alunoSchema = new mongoose.Schema({
     url: {type: String, required: true},
@@ -16,4 +16,5 @@ const alunoSchema = new mongoose.Schema({
 
 const Aluno = mongoose.model("alunos", alunoSchema);
 
-module.exports = Aluno;
+export {Aluno};
+
