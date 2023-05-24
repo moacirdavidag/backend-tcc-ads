@@ -2,7 +2,7 @@ const { gql } = require('graphql-modules');
 
 module.exports = gql`
         type Query {
-            bolsas(offset: Int, limit: Int): [Bolsa]!,
+            bolsas: [Bolsa]!,
             bolsasPorCategoria(categoria: Categoria!): [Bolsa]!,
             bolsaPorAluno(nome: String!): [Bolsa]!
         }

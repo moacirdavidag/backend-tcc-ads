@@ -2,11 +2,8 @@ const Curso = require('../models/curso');
 
 module.exports = {
     Query: {
-        cursos: async (_, args) => {
-            const {offset, limit} = args;
+        cursos: async () => {
             const cursos = await Curso.find({});
-            skip(offset).
-            limit(limit);
             return cursos;
         },
         cursoPorCodigo: async (_, args) => {

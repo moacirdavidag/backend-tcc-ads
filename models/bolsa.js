@@ -1,4 +1,4 @@
-import mongoose from '../database/mongo';
+const mongoose = require('mongoose');
 
 const bolsaSchema = new mongoose.Schema({
     url: {type: String, required: true},

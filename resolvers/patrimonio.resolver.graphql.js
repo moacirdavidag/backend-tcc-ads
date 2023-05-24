@@ -2,9 +2,8 @@ const Patrimonio = require('../models/patrimonio');
 
 module.exports = {
     Query: {
-        patrimonio: async (_, args) => {
-            const {offset, limit} = args;
-            return await Patrimonio.find({}).skip(offset).limit(limit);
+        patrimonio: async () => {
+            return await Patrimonio.find({});
         },
         patrimonioPorNumero: async (_, args) => {
             const NUMERO = args.numero;

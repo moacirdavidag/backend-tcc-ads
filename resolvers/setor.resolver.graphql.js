@@ -2,9 +2,8 @@ const Setor = require('../models/setor');
 
 module.exports = {
     Query: {
-        setores: async (_, args) => {
-            const {offset, limit} = args;
-            return await Setor.find({}).skip(offset).limit(limit);
+        setores: async () => {
+            return await Setor.find({});
         },
         setorPorNome: async (_, args) => {
             const NOME = args.nome;

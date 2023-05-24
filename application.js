@@ -1,5 +1,5 @@
-import { createApplication } from "graphql-modules";
-const AlunoModules = require('./modules/aluno.cjs');
+const { createApplication } = require("graphql-modules");
+const AlunoModules = require('./modules/aluno.module.graphql');
 const BolsaModules = require('./modules/bolsa.module.graphql');
 const CampiModules = require('./modules/campi.module.graphql');
 const CursoModules = require('./modules/curso.module.graphql');
@@ -11,8 +11,11 @@ const VersoesSuapModules = require('./modules/versoes-suap.module.graphql');
 const ProjetoExtensaoModules = require('./modules/projeto-extensao.module.graphql');
 const ProjetoPesquisaModules = require('./modules/projeto-pesquisa.module.graphql');
 
-export const application = createApplication({
+module.exports = createApplication({
     modules: [AlunoModules, BolsaModules, CampiModules, CursoModules, ServidorModules, 
     PatrimonioModules, SetorModules, MatrizModules, VersoesSuapModules, 
     ProjetoExtensaoModules, ProjetoPesquisaModules]
-});
+})
+
+
+

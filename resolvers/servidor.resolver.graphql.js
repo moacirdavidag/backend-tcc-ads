@@ -2,9 +2,8 @@ const Servidor = require('../models/servidor');
 
 module.exports = {
     Query: {
-        servidores: async (_, args) => {
-            const {offset, limit} = args;
-            return await Servidor.find({}).skip(offset).limit(limit);
+        servidores: async () => {
+            return await Servidor.find({})
         },
         servidorPorMatricula: async (_, args) => {
             const MATRICULA = args.matricula;

@@ -3,7 +3,7 @@ const { gql } = require('graphql-modules');
 module.exports = gql`
 
     type Query {
-        matrizes(offset: Int, limit: Int): [MatrizCurso]!,
+        matrizes: [MatrizCurso]!,
         matrizPorCurso(curso: String!): MatrizCurso
     }
 

@@ -2,7 +2,7 @@ const { gql } = require('graphql-modules');
 
 module.exports = gql`
     type Query {
-        versoes(offset: Int, limit: Int): [Versao]!,
+        versoes: [Versao]!,
     }
 
     type Versao {

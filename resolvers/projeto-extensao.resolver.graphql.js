@@ -2,9 +2,8 @@ const ProjetoExtensao = require('../models/projeto-extensao');
 
 module.exports = {
     Query: {
-        projetosDeExtensao: async (_, args) => {
-            const {offset, limit} = args;
-            return await ProjetoExtensao.find({}).skip(offset).limit(limit);
+        projetosDeExtensao: async () => {
+            return await ProjetoExtensao.find({});
         },
         projetosDeExtensaoPorFoco: async (_, args) => {
             return await ProjetoExtensao.find({foco_tecnologico: args.foco});

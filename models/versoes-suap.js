@@ -1,4 +1,4 @@
-import mongoose from '../database/mongo';
+const mongoose = require('mongoose');
 
 const versaoSchema = new mongoose.Schema({
     project: {type: String},

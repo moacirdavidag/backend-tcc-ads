@@ -1,4 +1,4 @@
-import mongoose from '../database/mongo';
+const mongoose = require('mongoose');
 
 const patrimonioSchema = new mongoose.Schema({
     uuid: {type: String, required: true},
