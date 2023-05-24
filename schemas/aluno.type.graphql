@@ -2,7 +2,7 @@ const { gql } = require('graphql-modules');
 
 module.exports = gql`
         type Query {
-            alunos: [Aluno],
+            alunos(filtros: InputsAluno): [Aluno],
             alunosPorMatricula(matricula: String!): Aluno!,
             alunosPorCota(cota: Cota!): [Aluno],
             alunosPorSituacao(situacao: Situacao!): [Aluno],
@@ -42,4 +42,18 @@ module.exports = gql`
             TRANCADO_VOLUNTARIAMENTE,
             TRANSFERIDO_EXTERNO
         }
+
+        input FiltrosAluno {
+            offset: Int,
+            limit: Int,
+            curso: String,
+            situacao: Situacao,
+            cota: Cota,
+            matricula: String
+        }
+
+        input InputsAluno {
+            filtro: FiltrosAluno
+        }
+
 `;

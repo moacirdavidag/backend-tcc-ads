@@ -2,7 +2,7 @@ const { gql } = require('graphql-modules');
 
 module.exports = gql`
     type Query {
-        projetosDeExtensao: [ProjetoExtensao]!
+        projetosDeExtensao(offset: Int, limit: Int): [ProjetoExtensao]!
         projetosDeExtensaoPorFoco(foco: String!): [ProjetoExtensao]!,
         projetosDeExtensaoPorArea(area: String!): [ProjetoExtensao]!,
         projetosDeExtensaoPorUO(nome: String!): [ProjetoExtensao]!

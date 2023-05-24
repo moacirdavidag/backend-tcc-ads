@@ -2,8 +2,9 @@ const Campi = require('../models/campi')
 
 module.exports = {
     Query: {
-        campi: async () => {
-            return await Campi.find({});
+        campi: async (_, args) => {
+            const {offset, limit} = args;
+            return await Campi.find({}).skip(offset).limit(limit);
         },
         campusPorSigla: async (_, args) => {
             const SIGLA = args.sigla;
