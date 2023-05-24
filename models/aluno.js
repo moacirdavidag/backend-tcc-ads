@@ -14,5 +14,7 @@ const alunoSchema = new mongoose.Schema({
     cota: {type: String}
 });
 
-export const Aluno = mongoose.model("alunos", alunoSchema);
+const Aluno = mongoose.model("alunos", alunoSchema);
+
+module.exports = Aluno;
 

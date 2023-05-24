@@ -1,4 +1,4 @@
-export const enumCotaParaTextoValido = (valor) => {
+module.exports = enumCotaParaTextoValido = (valor) => {
     switch(valor) {
         case "ESCOLA_PUBLICA":
             return "Oriundo de escola pública";

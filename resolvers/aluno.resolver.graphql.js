@@ -1,5 +1,5 @@
-import Aluno from '../models/aluno';
-import { enumCotaParaTextoValido } from '../services/converterEnumsEmTextosValidos';
+const Aluno = require('../models/aluno');
+const enumCotaParaTextoValido = require('../services/converterEnumsEmTextosValidos');
 
 module.exports = {
     Query: {
