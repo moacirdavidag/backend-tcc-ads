@@ -2,11 +2,7 @@ const { gql } = require('graphql-modules');
 
 module.exports = gql`
     type Query {
-        projetosDePesquisa(offset: Int, limit: Int): [ProjetoPesquisa]!,
-        projetoDePesquisaPorTitulo(titulo: String!): ProjetoPesquisa,
-        projetosDePesquisaPorUO(uo: String!): [ProjetoPesquisa]!,
-        projetosDePesquisaPorArea(area: String!): [ProjetoPesquisa]!,
-        projetosDePesquisaPorFoco(foco: String!): [ProjetoPesquisa]!
+        projetosDePesquisa(filtros: FiltrosProjetoPesquisa): [ProjetoPesquisa]
     }
 
     type ProjetoPesquisa {
@@ -35,6 +31,19 @@ module.exports = gql`
     type Participantes {
         uuid: String!,
         nome: String!
+    }
+
+    input FiltrosProjetoPesquisa {
+        limit: Int,
+        offset: Int,
+        uo: String,
+        area: String,
+        foco: String,
+        titulo: String
+    }
+
+    input InputsProjetoPesquisa {
+        filtro: FiltrosProjetoExtensao
     }
 
 `;

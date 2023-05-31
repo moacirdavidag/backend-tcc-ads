@@ -1,0 +1,10 @@
+const { createModule } = require('graphql-modules');
+const Programa = require('../schemas/programa.type.graphql');
+const ProgramaResolvers = require('../resolvers/programa.resolver.graphql.js');
+
+module.exports = createModule({
+    id: 'programa-modulo',
+    dirname: __dirname,
+    typeDefs: [Programa],
+    resolvers: [ProgramaResolvers]
+  });

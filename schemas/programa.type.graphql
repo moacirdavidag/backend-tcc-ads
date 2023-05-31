@@ -2,32 +2,38 @@ const { gql } = require('graphql-modules');
 
 module.exports = gql`
 
-    type ProgramaAssistencia {
+    directive @fetch(from : Int) on FIELD_DEFINITION
+
+    type Query {
+        programas: [Programa]
+    }
+
+    type Programa {
         url: String!,
         uuid: ID!,
         titulo: String!,
         numero_atendimento: Int!,
-        #atendimento_por_campus: AtendimentoPorCampus,
+        atendimento_por_campus: AtendimentoPorCampus,
         #periodos_inscricao_por_campus: PeriodoInscricaoPorCampus
     } 
 
-    # type AtendimentoPorCampus {
-    #   REITORIA: Int,
-    #   CAMPUS CABEDELO: Int,
-    #   CAMPUS CAJAZEIRAS: Int,
-    #   CAMPUS CAMPINA GRANDE: Int,
-    #   CAMPUS GUARABIRA: Int,
-    #   CAMPUS PRINCESA ISABEL: Int,
-    #   CAMPUS MONTEIRO: Int,
-    #   CAMPUS PICUÍ: Int,
-    #   CAMPUS SANTA RITA: Int,
-    #   CAMPUS CATOLÉ DO ROCHA: Int,
-    #   CAMPUS ITAPORANGA: Int,
-    #   CAMPUS JOÃO PESSOA: Int,
-    #   CAMPUS SOUSA: Int,
-    #   CAMPUS PATOS: Int,
-    #   CAMPUS ITABAIANA: Int        
-    # }
+    type AtendimentoPorCampus {
+      REITORIA: Int @fetch(from:"Poke ball"),
+      CAMPUS_CABEDELO: Int @fetch(from:"CAMPUS CABEDELO"),
+      CAMPUS_CAJAZEIRAS: Int @fetch(from:"CAMPUS CAJAZEIRAS"),
+      CAMPUS_CAMPINA_GRANDE: Int @fetch(from:"CAMPUS CAMPINA GRANDE"),
+      CAMPUS_GUARABIRA: Int @fetch(from:"CAMPUS GUARABIRA"),
+      CAMPUS_PRINCESA_ISABEL: Int @fetch(from:"CAMPUS PRINCESA ISABEL"),
+      CAMPUS_MONTEIRO: Int @fetch(from:"CAMPUS MONTEIRO"),
+      CAMPUS_PICUI: Int @fetch(from:"CAMPUS PICUÍ"),
+      CAMPUS_SANTA_RITA: Int @fetch(from:"CAMPUS SANTA RITA"),
+      CAMPUS_CATOLE_DO_ROCHA: Int @fetch(from:"CAMPUS CATOLÉ DO ROCHA"),
+      CAMPUS_ITAPORANGA: Int @fetch(from:"CAMPUS ITAPORANGA"),
+      CAMPUS_JOAO_PESSOA: Int @fetch(from:"CAMPUS JOÃO PESSOA"),
+      CAMPUS_SOUSA: Int @fetch(from:"CAMPUS SOUSA"),
+      CAMPUS_PATOS: Int @fetch(from:"CAMPUS PATOS"),
+      CAMPUS_ITABAIANA: Int @fetch(from:"CAMPUS ITABAIANA")        
+    }
 
     # type PeriodoInscricaoPorCampus {
     #     REITORIA: [DadosProgramaAssistencia]!,

@@ -3,10 +3,7 @@ const { gql } = require('graphql-modules');
 module.exports = gql`
 
     type Query {
-        servidores(offset: Int, limit: Int): [Servidor],
-        servidorPorMatricula(matricula: String!): Servidor!,
-        servidoresPorCargo(cargo: String!): [Servidor]!,
-        servidorPorNome(nome: String!): Servidor!
+        servidores(filtros: FiltrosServidor): [Servidor]
     }
 
     type Servidor {
@@ -48,6 +45,18 @@ module.exports = gql`
         uuid: ID,
         sigla: String,
         nome: String
+    }
+
+    input FiltrosServidor {
+        limit: Int,
+        offset: Int,
+        matricula: String,
+        cargo: String,
+        nome: String
+    }
+
+    input InputsServidor {
+        filtro: FiltrosServidor
     }
 
 `;

@@ -3,20 +3,38 @@ const Servidor = require('../models/servidor');
 module.exports = {
     Query: {
         servidores: async (_, args) => {
-            const {offset, limit} = args;
-            return await Servidor.find({}).skip(offset).limit(limit);
-        },
-        servidorPorMatricula: async (_, args) => {
-            const MATRICULA = args.matricula;
-            return await Servidor.findOne({matricula: MATRICULA});
-        },
-        servidoresPorCargo: async (_, args) => {
-            const CARGO = args.cargo;
-            return await Servidor.find({cargo_emprego: CARGO});
-        },
-        servidorPorNome: async (_, args) => {
-            const NOME = args.nome;
-            return await Servidor.findOne({nome: NOME});
+            const {filtro} = args.filtros;
+
+            const aplicarFiltroPorNome = filtro.nome !== null;
+            const aplicarFiltroPorMatricula = filtro.matricula !== null;
+            const aplicarFiltroPorCargo = filtro.cargo !== null;
+
+            let servidores = await Servidor.find({})
+            .skip(filtro.offset)
+            .limit(filtro.limit);
+
+            if(aplicarFiltroPorNome) {
+                servidores = await Servidor.find({nome: filtro.nome})
+                .skip(filtro.offset)
+                .limit(filtro.limit);
+                return servidores;
+            }
+
+            if(aplicarFiltroPorMatricula) {
+                servidores = await Servidor.find({matricula: filtro.matricula})
+                .skip(filtro.offset)
+                .limit(filtro.limit);
+                return servidores;
+            }
+
+            if(aplicarFiltroPorCargo) {
+                servidores = await Servidor.find({cargo_emprego: filtro.cargo})
+                .skip(filtro.offset)
+                .limit(filtro.limit);
+                return servidores;
+            }
+
+            return servidores;
         }
     }
 }

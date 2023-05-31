@@ -3,10 +3,7 @@ const { gql } = require('graphql-modules');
 module.exports = gql`
 
     type Query {
-        cursos (offset: Int, limit: Int): [Curso]!,
-        cursoPorCodigo(codigo: Int!): [Curso]!,
-        cursosPorModalidade(modalidade: Modalidade!): [Curso]!,
-        cursosPorNaturezaParticipacao(participacao: Participacao!): [Curso]!
+        cursos (filtros: FiltrosCurso): [Curso],
     }
 
     type Curso {
@@ -45,10 +42,16 @@ module.exports = gql`
         EAD
     }
 
-    input CursoInput {
+    input FiltrosCurso {
+        limit: Int,
+        offset: Int
         codigo: Int,
         natureza_participacao: Participacao,
         modalidade: Modalidade
+    }
+
+    input InputCurso {
+        filtro: FiltrosCurso
     }
 
 `;

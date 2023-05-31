@@ -1,55 +1,43 @@
 const Curso = require('../models/curso');
+const { enumModalideCursoParaTextoValido, enumNaturezaParticipacaoParaTextoValido } = require('../services/converterEnumsEmTextosValidos');
 
 module.exports = {
     Query: {
         cursos: async (_, args) => {
-            const {offset, limit} = args;
-            const cursos = await Curso.find({});
-            skip(offset).
-            limit(limit);
-            return cursos;
-        },
-        cursoPorCodigo: async (_, args) => {
-            const codigo = args.codigo;
-            return await Curso.find({ codigo: codigo });
-        },
-        cursosPorModalidade: async (_, args) => {
-            const MODALIDADE = args.modalidade;
-            let modalidade;
-            switch (MODALIDADE) {
-                case "TECNOLOGIA":
-                    modalidade = "Tecnologia";
-                    break;
-                    //return await Curso.find({modalidade: "Tecnologia"});
-                case "BACHARELADO":
-                    modalidade = "Bacharelado";
-                    break;
-                case "LICENCIATURA":
-                    modalidade = "Licenciatura";
-                    break;
-                case "ESPECIALIZACAO":
-                    modalidade = "Especialização";
-                    break;
-                case "SUBSEQUENTE":
-                    modalidade = "Subsequente";
-                    break;
-                case "INTEGRADO":
-                    modalidade = "Integrado";
-                    break;
-                case "INTEGRADO_EJA":
-                    modalidade = "Integrado EJA";
-                    break;
+            const {filtro} = args.filtros;
+
+            const aplicarFiltroPorCodigo = filtro.codigo !== null;
+            const aplicarFiltroPorNaturezaParticipacao = filtro.natureza_participacao !== null;
+            const aplicarFiltroPorModalidade = filtro.modalidade !== null;
+
+            let cursos = await Curso.find({});
+            skip(filtro.offset).
+            limit(filtro.limit);
+
+            if(aplicarFiltroPorCodigo) {
+                cursos = await Curso.find({codigo: filtro.codigo});
+                skip(filtro.offset).
+                limit(filtro.limit);
+                return cursos;
             }
-            return await Curso.find({modalidade: modalidade});
-        },
-        cursosPorNaturezaParticipacao: async (_, args) => {
-            const NATUREZA_PARTICIPACAO = args.participacao;
-            switch(NATUREZA_PARTICIPACAO) {
-                case "EAD":
-                    return await Curso.find({natureza_participacao: "EaD"});
-                case "PRESENCIAL":
-                    return await Curso.find({natureza_participacao: "Presencial"});
-            } 
+
+            if(aplicarFiltroPorModalidade) {
+                let modalidade = enumModalideCursoParaTextoValido(filtro.modalidade);
+                cursos = await Curso.find({modalidade});
+                skip(filtro.offset).
+                limit(filtro.limit);
+                return cursos;
+            }
+
+            if(aplicarFiltroPorNaturezaParticipacao) {
+                let natureza_participacao = enumNaturezaParticipacaoParaTextoValido(filtro.natureza_participacao);
+                cursos = await Curso.find({natureza_participacao});
+                skip(filtro.offset).
+                limit(filtro.limit);
+                return cursos;
+            }
+
+            return cursos;
         }
     }
 };

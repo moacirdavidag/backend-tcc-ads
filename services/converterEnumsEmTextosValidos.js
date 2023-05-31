@@ -49,5 +49,34 @@ const enumCategoriaBolsaParaTextoValido = (valor) => {
     }
 }
 
-module.exports = { enumCotaParaTextoValido, enumSituacaoParaTextoValido, enumCategoriaBolsaParaTextoValido };
+const enumModalideCursoParaTextoValido = (valor) => {
+    switch(valor) {
+        case "LICENCIATURA":
+            return "Licenciatura";
+        case "BACHARELADO":
+            return "Bacharelado";
+        case "ESPECIALIZACAO":
+            return "Especialização";
+        case "SUBSEQUENTE":
+            return "Subsequente";
+        case "INTEGRADO":
+            return "Integrado";
+        case "INTEGRADO_EJA":
+            return "Integrado EJA";
+    }
+}
+
+const enumNaturezaParticipacaoParaTextoValido = (valor) => {
+    switch(valor) {
+        case "PRESENCIAL":
+            return "Presencial";
+        case "EAD":
+            return "EaD";
+    }
+}
+
+module.exports = { enumCotaParaTextoValido, enumSituacaoParaTextoValido, 
+    enumCategoriaBolsaParaTextoValido, enumModalideCursoParaTextoValido,
+    enumNaturezaParticipacaoParaTextoValido
+};
 

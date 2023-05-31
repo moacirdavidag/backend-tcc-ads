@@ -3,10 +3,7 @@ const { gql } = require('graphql-modules');
 module.exports = gql`
 
     type Query {
-        setores(offset: Int, limit: Int): [Setor]!,
-        setorPorNome(nome: String!): Setor,
-        setorPorSigla(sigla: String!): Setor,
-        setorPorUnidadeOrganizacional(nome: String!): [Setor]!
+        setores(filtros: FiltrosSetor): [Setor]
     }
 
     type Setor {
@@ -33,6 +30,18 @@ module.exports = gql`
         uuid: String,
         sigla: String,
         nome: String
+    }
+
+    input FiltrosSetor {
+        limit: Int,
+        offset: Int,
+        nome: String,
+        sigla: String,
+        uo: String
+    }
+
+    input InputsSetor {
+        filtro: FiltrosSetor
     }
 
 `;

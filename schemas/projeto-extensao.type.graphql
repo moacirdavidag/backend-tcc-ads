@@ -2,10 +2,7 @@ const { gql } = require('graphql-modules');
 
 module.exports = gql`
     type Query {
-        projetosDeExtensao(offset: Int, limit: Int): [ProjetoExtensao]!
-        projetosDeExtensaoPorFoco(foco: String!): [ProjetoExtensao]!,
-        projetosDeExtensaoPorArea(area: String!): [ProjetoExtensao]!,
-        projetosDeExtensaoPorUO(nome: String!): [ProjetoExtensao]!
+        projetosDeExtensao(filtros: FiltrosProjetoExtensao): [ProjetoExtensao]
     }
 
     type ProjetoExtensao {
@@ -35,6 +32,19 @@ module.exports = gql`
     type Participantes {
         uuid: String!,
         nome: String!
+    }
+
+    input FiltrosProjetoExtensao {
+        limit: Int,
+        offset: Int,
+        uo: String,
+        area: String,
+        foco: String,
+        titulo: String
+    }
+
+    input InputsProjetoExtensao {
+        filtro: FiltrosProjetoExtensao
     }
 
 `;
