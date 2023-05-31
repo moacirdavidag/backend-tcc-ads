@@ -2,9 +2,7 @@ const { gql } = require('graphql-modules');
 
 module.exports = gql`
         type Query {
-            bolsas(offset: Int, limit: Int): [Bolsa]!,
-            bolsasPorCategoria(categoria: Categoria!): [Bolsa]!,
-            bolsaPorAluno(nome: String!): [Bolsa]!
+            bolsas(filtros: InputsBolsa): [Bolsa]
         }
 
         type Bolsa {
@@ -23,6 +21,17 @@ module.exports = gql`
             MORADIA,
             ALMOCO,
             JANTA
+        }
+
+        input FiltrosBolsa {
+            offset: Int,
+            limit: Int,
+            aluno: String,
+            categoria: Categoria
+        }
+
+        input InputsBolsa {
+            filtro: FiltrosBolsa
         }
 
 `;

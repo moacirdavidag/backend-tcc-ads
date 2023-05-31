@@ -1,5 +1,5 @@
 const Aluno = require('../models/aluno');
-const enumCotaParaTextoValido = require('../services/converterEnumsEmTextosValidos');
+const { enumCotaParaTextoValido, enumSituacaoParaTextoValido } = require('../services/converterEnumsEmTextosValidos');
 
 module.exports = {
     Query: {
@@ -11,7 +11,7 @@ module.exports = {
             const aplicarFiltroPorMatricula = filtro.matricula !== null;
             const aplicarFiltroPorSituacao = filtro.situacao !== null;
 
-            const alunos = await Aluno.find({})
+            let alunos = await Aluno.find({})
             .skip(filtro.offset)
             .limit(filtro.limit);
 
@@ -21,10 +21,37 @@ module.exports = {
 
             if(aplicarFiltroDeCotas) {
                 const cota = enumCotaParaTextoValido(filtro.cota);
-                return alunos.filter(alunos => alunos.cota === cota);
+                alunos = await Aluno.find({cota})
+                .skip(filtro.offset)
+                .limit(filtro.limit);
             }
 
-            //return alunos;
+            if(aplicarFiltroPorSituacao) {
+                const situacao = enumSituacaoParaTextoValido(filtro.situacao);
+                alunos = await Aluno.find({situacao})
+                .skip(filtro.offset)
+                .limit(filtro.limit);
+            }
+
+            if(aplicarFiltroPorMatricula) {
+                alunos = await Aluno.find({matricula: filtro.matricula})
+                .skip(filtro.offset)
+                .limit(filtro.limit);
+            }
+
+            // if(aplicarFiltroPorCurso) {
+            //     let curso = new RegExp(filtro.curso);
+            //     alunos = await Aluno.find({
+            //         curso: {
+            //             $regex: curso,
+            //             $options: 'i'
+            //         }
+            //     })
+            //     .skip(filtro.offset)
+            //     .limit(filtro.limit);
+            // }
+
+            return alunos;
         }
     }
 }

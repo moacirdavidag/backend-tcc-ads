@@ -1,39 +1,34 @@
 const Bolsa = require('../models/bolsa');
+const { enumCategoriaBolsaParaTextoValido } = require('../services/converterEnumsEmTextosValidos');
 
 module.exports = {
     Query: {
         bolsas: async (_, args) => {
-            const { offset, limit } = args;
-            return await Bolsa.find({}).skip(offset).limit(limit);
-        },
-        bolsasPorCategoria: async (_, args) => {
-            const CATEGORIA = args.categoria;
-            let categoria;
-            switch (CATEGORIA) {
-                case "TRANSPORTE_ESTUDANTIL":
-                    categoria = "Transporte Estudantil";
-                    break;
-                case "ALIMENTACAO":
-                    categoria = "Alimentação";
-                    break;
-                case "FOTOCOPIA":
-                    categoria = "FOTOCÓPIA";
-                    break;
-                case "MORADIA":
-                    categoria = " Moradia Estudantil";
-                    break;
-                case "ALMOCO":
-                    categoria = "Alimentação ALMOÇO";
-                    break;
-                case "JANTA":
-                    categoria = "Alimentação JANTAR";
-                    break;
+            const {filtro} = args.filtros;
+
+            const aplicarFiltroPorAluno = filtro.aluno !== null;
+            const aplicarFiltroPorCategoria = filtro.categoria != null;
+
+            let bolsas =  await Bolsa.find({})
+            .skip(filtro.offset)
+            .limit(filtro.limit);
+
+            if(aplicarFiltroPorAluno) {
+                bolsas =  await Bolsa.find({aluno: filtro.aluno})
+                .skip(filtro.offset)
+                .limit(filtro.limit);
+                return bolsas;
             }
-            return await Bolsa.find({ categoria_bolsa: categoria });
-        },
-        bolsaPorAluno: async (_, args) => {
-            const NOME_ALUNO = args.nome;
-            return await Bolsa.find({ aluno: NOME_ALUNO });
+
+            if(aplicarFiltroPorCategoria) {
+                const categoria = enumCategoriaBolsaParaTextoValido(filtro.categoria);
+                bolsas =  await Bolsa.find({categoria_bolsa: categoria})
+                .skip(filtro.offset)
+                .limit(filtro.limit);
+                return bolsas;
+            }
+
+            return bolsas;
         }
     }
 };
