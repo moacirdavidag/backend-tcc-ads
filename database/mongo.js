@@ -9,7 +9,7 @@ async function main() {
     await mongoose.connect(`mongodb://localhost:${process.env.DB_PORT}/${process.env.DB_NAME}`);
   } else {
     console.log("Entrou no modo dev");
-    await mongoose.connect(`mongodb+srv://${process.env.DB_PRODUCTION_USERNAME}:${process.env.DB_PRODUCTION_PASSWORD}@cluster0.iuddyty.mongodb.net/?retryWrites=true&w=majority
+    await mongoose.connect(`mongodb+srv://${process.env.DB_PRODUCTION_USERNAME}:${decodeURIComponent(process.env.DB_PRODUCTION_PASSWORD)}@cluster0.iuddyty.mongodb.net/?retryWrites=true&w=majority
     `);
   }
 }
