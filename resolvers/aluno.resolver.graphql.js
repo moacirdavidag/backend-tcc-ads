@@ -4,52 +4,36 @@ const { enumCotaParaTextoValido, enumSituacaoParaTextoValido } = require('../ser
 module.exports = {
     Query: {
         alunos: async (_, args) => {
-            const {filtro} = args.filtros;
+            const { filtro } = args.filtros;
+            const query = {};
 
-            const aplicarFiltroDeCotas = filtro.cota !== null;
-            const aplicarFiltroPorCurso = filtro.curso !== null;
-            const aplicarFiltroPorMatricula = filtro.matricula !== null;
-            const aplicarFiltroPorSituacao = filtro.situacao !== null;
-
-            let alunos = await Aluno.find({})
-            .skip(filtro.offset)
-            .limit(filtro.limit);
-
-            if(!aplicarFiltroDeCotas && !aplicarFiltroPorCurso && !aplicarFiltroPorMatricula && !aplicarFiltroPorSituacao) {
-                return alunos;
-            }
-
-            if(aplicarFiltroDeCotas) {
+            if (filtro.cota !== null) {
                 const cota = enumCotaParaTextoValido(filtro.cota);
-                alunos = await Aluno.find({cota})
-                .skip(filtro.offset)
-                .limit(filtro.limit);
+                query.cota = cota;
             }
 
-            if(aplicarFiltroPorSituacao) {
+            if (filtro.situacao !== null) {
                 const situacao = enumSituacaoParaTextoValido(filtro.situacao);
-                alunos = await Aluno.find({situacao})
-                .skip(filtro.offset)
-                .limit(filtro.limit);
+                query.situacao = situacao;
             }
 
-            if(aplicarFiltroPorMatricula) {
-                alunos = await Aluno.find({matricula: filtro.matricula})
-                .skip(filtro.offset)
-                .limit(filtro.limit);
+            if (filtro.matricula !== null) {
+                query.matricula = filtro.matricula;
             }
 
-            // if(aplicarFiltroPorCurso) {
-            //     let curso = new RegExp(filtro.curso);
-            //     alunos = await Aluno.find({
-            //         curso: {
-            //             $regex: curso,
-            //             $options: 'i'
-            //         }
-            //     })
-            //     .skip(filtro.offset)
-            //     .limit(filtro.limit);
-            // }
+            if (filtro.curso !== null) {
+                const curso = new RegExp(filtro.curso);
+                query["curso.nome"] = { $regex: curso, $options: 'i' };
+            }
+
+            if (filtro.nome !== null) {
+                const nome = new RegExp(filtro.nome);
+                query.nome = { $regex: nome, $options: 'i' };
+            }
+
+            const alunos = await Aluno.find(query)
+                .skip(filtro.offset)
+                .limit(filtro.limit);
 
             return alunos;
         }

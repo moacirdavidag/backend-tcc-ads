@@ -45,7 +45,8 @@ module.exports = gql`
             curso: String,
             situacao: Situacao,
             cota: Cota,
-            matricula: String
+            matricula: String,
+            nome: String
         }
 
         input InputsAluno {
