@@ -8,7 +8,8 @@ const server = new ApolloServer({
     schema,
     cors: {
         origin: "*"
-    }
+    },
+    introspection: true
 });
 
 const PORT = process.env.PORT || 4000;
