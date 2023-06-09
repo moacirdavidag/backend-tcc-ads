@@ -5,7 +5,10 @@ const application = require('./application');
 const schema = application.createSchemaForApollo();
 
 const server = new ApolloServer({
-    schema
+    schema,
+    cors: {
+        origin: "*"
+    }
 });
 
 const PORT = process.env.PORT || 4000;
