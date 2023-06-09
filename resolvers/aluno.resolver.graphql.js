@@ -31,11 +31,15 @@ module.exports = {
                 query.nome = { $regex: nome, $options: 'i' };
             }
 
-            const alunos = await Aluno.find(query)
+            try {
+                const alunos = await Aluno.find(query)
                 .skip(filtro.offset)
                 .limit(filtro.limit);
 
-            return alunos;
+                return alunos !== [] ? alunos : [];
+            } catch(e) {
+                console.log(`Ocorreu um erro: ${e}`);
+            }
         }
     }
 }
