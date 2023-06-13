@@ -3,7 +3,7 @@ const { gql } = require('graphql-modules');
 module.exports = gql`
 
     type Query {
-        patrimonio(filtros: FiltrosPatrimonio): [Patrimonio]
+        patrimonio(filtros: InputsPatrimonio): [Patrimonio]
     }
 
     type Patrimonio {

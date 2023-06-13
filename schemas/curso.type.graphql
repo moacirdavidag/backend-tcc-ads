@@ -3,7 +3,7 @@ const { gql } = require('graphql-modules');
 module.exports = gql`
 
     type Query {
-        cursos (filtros: FiltrosCurso): [Curso],
+        curso (filtros: InputCurso): [Curso],
     }
 
     type Curso {
@@ -47,7 +47,8 @@ module.exports = gql`
         offset: Int
         codigo: Int,
         natureza_participacao: Participacao,
-        modalidade: Modalidade
+        modalidade: Modalidade,
+        nome: String
     }
 
     input InputCurso {

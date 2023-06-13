@@ -63,6 +63,8 @@ const enumModalideCursoParaTextoValido = (valor) => {
             return "Integrado";
         case "INTEGRADO_EJA":
             return "Integrado EJA";
+        case "TECNOLOGIA":
+            return "Tecnologia"
     }
 }
 
@@ -74,6 +76,8 @@ const enumNaturezaParticipacaoParaTextoValido = (valor) => {
             return "EaD";
     }
 }
+
+
 
 module.exports = { enumCotaParaTextoValido, enumSituacaoParaTextoValido, 
     enumCategoriaBolsaParaTextoValido, enumModalideCursoParaTextoValido,

@@ -6,29 +6,30 @@ module.exports = {
         bolsas: async (_, args) => {
             const {filtro} = args.filtros;
 
-            const aplicarFiltroPorAluno = filtro.aluno !== null;
-            const aplicarFiltroPorCategoria = filtro.categoria != null;
+            const query = {};
 
-            let bolsas =  await Bolsa.find({})
-            .skip(filtro.offset)
-            .limit(filtro.limit);
-
-            if(aplicarFiltroPorAluno) {
-                bolsas =  await Bolsa.find({aluno: filtro.aluno})
-                .skip(filtro.offset)
-                .limit(filtro.limit);
-                return bolsas;
+            if(filtro.aluno !== null) {
+                const aluno = new RegExp(filtro.aluno);
+                query.aluno = { $regex: aluno, $options: 'i' };
             }
 
-            if(aplicarFiltroPorCategoria) {
+            if(filtro.categoria !== null) {
                 const categoria = enumCategoriaBolsaParaTextoValido(filtro.categoria);
-                bolsas =  await Bolsa.find({categoria_bolsa: categoria})
-                .skip(filtro.offset)
-                .limit(filtro.limit);
-                return bolsas;
+                query.categoria_bolsa = categoria;
             }
 
-            return bolsas;
+            try {
+
+                const bolsas = await Bolsa.find(query)
+                .skip(filtro.offset)
+                .limit(filtro.limit);
+
+                return bolsas;
+
+            } catch(e) {
+                console.log(`Ocorreu um erro: ${e}`);
+            }
+
         }
     }
 };

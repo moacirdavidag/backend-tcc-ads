@@ -5,36 +5,34 @@ module.exports = {
         servidores: async (_, args) => {
             const {filtro} = args.filtros;
 
-            const aplicarFiltroPorNome = filtro.nome !== null;
-            const aplicarFiltroPorMatricula = filtro.matricula !== null;
-            const aplicarFiltroPorCargo = filtro.cargo !== null;
+            const query = {};
 
-            let servidores = await Servidor.find({})
-            .skip(filtro.offset)
-            .limit(filtro.limit);
-
-            if(aplicarFiltroPorNome) {
-                servidores = await Servidor.find({nome: filtro.nome})
-                .skip(filtro.offset)
-                .limit(filtro.limit);
-                return servidores;
+            if(filtro.nome !== null) {
+                const nome = new RegExp(filtro.nome);
+                query.nome = { $regex: nome, $options: 'i' };
             }
 
-            if(aplicarFiltroPorMatricula) {
-                servidores = await Servidor.find({matricula: filtro.matricula})
-                .skip(filtro.offset)
-                .limit(filtro.limit);
-                return servidores;
+            if(filtro.cargo !== null) {
+                const cargo = new RegExp(filtro.cargo);
+                query.cargo = { $regex: cargo, $options: 'i' };
             }
 
-            if(aplicarFiltroPorCargo) {
-                servidores = await Servidor.find({cargo_emprego: filtro.cargo})
-                .skip(filtro.offset)
-                .limit(filtro.limit);
-                return servidores;
+            if(filtro.matricula !== null) {
+                query.matricula = filtro.matricula;
             }
 
-            return servidores;
+            try {
+
+                const servidores = await Servidor.find(query)
+                .skip(filtro.offset)
+                .limit(filtro.limit);
+
+                return servidores;
+
+            } catch(e) {
+                console.log(`Ocorreu um erro: ${e}`);
+            }
+
         }
     }
 }

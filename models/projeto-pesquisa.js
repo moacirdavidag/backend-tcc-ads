@@ -24,6 +24,6 @@ const projetoPesquisaSchema = new mongoose.Schema({
         aprovado: Boolean
 });
 
-const ProjetoPesquisa = mongoose.model("projetosdepesquisa", projetoPesquisaSchema);
+const ProjetoPesquisa = mongoose.model("projetosdepesquisas", projetoPesquisaSchema);
 
 module.exports = ProjetoPesquisa;

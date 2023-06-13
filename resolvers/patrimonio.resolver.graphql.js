@@ -5,28 +5,31 @@ module.exports = {
         patrimonio: async (_, args) => {
             const {filtro} = args.filtros;
 
-            const aplicarFiltroPorNumero = filtro.numero !== null;
-            const aplicarFiltroPorCampus = filtro.campus !== null;
+            const query = {};
 
-            let patrimonio = await Patrimonio.find({})
-            .skip(filtro.offset)
-            .limit(filtro.limit);
-
-            if(aplicarFiltroPorNumero) {
-                patrimonio = await Patrimonio.find({numero: filtro.numero})
-                .skip(filtro.offset)
-                .limit(filtro.limit);
-                return patrimonio;
+            if(filtro.numero !== null) {
+                query.numero = filtro.numero;
             }
 
-            if(aplicarFiltroPorCampus) {
-                patrimonio = await Patrimonio.find({campus: filtro.campus})
-                .skip(filtro.offset)
-                .limit(filtro.limit);
-                return patrimonio;
+            if(filtro.campus !== null) {
+                const campus = new RegExp(filtro.campus);
+                query["campus"] = { $regex: campus, $options: 'i' };
             }
 
-            return patrimonio;
+            console.log(query);
+
+            try {
+
+                const patrimonio = await Patrimonio.find(query)
+                .skip(filtro.offset)
+                .limit(filtro.limit);
+
+                return patrimonio;
+
+            } catch(e) {
+                console.log(`Ocorreu um erro: ${e}`);
+            }
+
         }
     }
 }

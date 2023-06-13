@@ -5,20 +5,24 @@ module.exports = {
         matrizes: async (_, args) => {
             const {filtro} = args.filtros;
 
-            const aplicarFiltroPorCurso = filtro.curso !== null;
-            
-            let matrizes = await Matriz.find({})
-            .skip(filtro.offset)
-            .limit(filtro.limit);
+            const query = {};
 
-            if(aplicarFiltroPorCurso) {
-                matrizes = await Matriz.find({curso: filtro.curso})
-                .skip(filtro.offset)
-                .limit(filtro.limit);
-                return matrizes;
+            if(filtro.curso !== null) {
+                const curso = new RegExp(filtro.curso);
+                query.descricao = { $regex: curso, $options: 'i'};
             }
 
-            return matrizes;
+            try {
+                const matriz = await Matriz.find(query)
+                .skip(filtro.offset)
+                .limit(filtro.limit);
+
+                return matriz;
+                
+            } catch(e) {
+                console.log(`Ocorreu um erro: ${e}`);
+            }
+
         }
     }
 }

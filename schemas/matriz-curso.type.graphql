@@ -3,7 +3,7 @@ const { gql } = require('graphql-modules');
 module.exports = gql`
 
     type Query {
-        matrizes(filtros: FiltrosMatrizCurso): [MatrizCurso],
+        matrizes(filtros: InputsMatrizCurso): [MatrizCurso],
     }
 
     type MatrizCurso {

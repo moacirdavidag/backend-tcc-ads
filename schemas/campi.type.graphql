@@ -3,7 +3,7 @@ const { gql } = require('graphql-modules');
 module.exports = gql`
 
     type Query {
-        campi (filtros: FiltrosCampi): [Campi],
+        campi (filtros: InputsCampi): [Campi],
     }
 
     type Campi {

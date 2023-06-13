@@ -15,6 +15,6 @@ const campiSchema = new mongoose.Schema({
     }
 });
 
-const Campi = mongoose.model("campi", campiSchema);
+const Campi = mongoose.model("campis", campiSchema);
 
 module.exports = Campi;

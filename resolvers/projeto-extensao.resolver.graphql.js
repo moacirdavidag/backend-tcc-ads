@@ -5,44 +5,40 @@ module.exports = {
         projetosDeExtensao: async (_, args) => {
             const {filtro} = args.filtros;
 
-            const aplicarFiltroPorUO = filtro.uo !== null;
-            const aplicarFiltroPorFoco = filtro.foco !== null;
-            const aplicarFiltroPorArea = filtro.area !== null;
-            const aplicarFiltroPorTitulo = filtro.titulo !== null;
+            const query = {};
 
-            let projetosExtensao = await ProjetoExtensao.find({})
-            .skip(filtro.offset)
-            .limit(filtro.limit);
-
-            if(aplicarFiltroPorUO) {
-                projetosExtensao = await ProjetoExtensao.find({uo: filtro.uo})
-                .skip(filtro.offset)
-                .limit(filtro.limit);
-                return projetosExtensao;
+            if(filtro.uo !== null) {
+                const uo = new RegExp(filtro.uo);
+                query.uo = { $regex: uo, $options: 'i' };
             }
 
-            if(aplicarFiltroPorFoco) {
-                projetosExtensao = await ProjetoExtensao.find({foco_tecnologico: filtro.foco})
-                .skip(filtro.offset)
-                .limit(filtro.limit);
-                return projetosExtensao;
+            if(filtro.foco !== null) {
+                const foco = new RegExp(filtro.foco);
+                query.foco = { $regex: foco, $options: 'i' };
             }
 
-            if(aplicarFiltroPorArea) {
-                projetosExtensao = await ProjetoExtensao.find({area_conhecimento: filtro.area})
-                .skip(filtro.offset)
-                .limit(filtro.limit);
-                return projetosExtensao;
+            if(filtro.area !== null) {
+                const area = new RegExp(filtro.area);
+                query.area = { $regex: area, $options: 'i' };
             }
 
-            if(aplicarFiltroPorTitulo) {
-                projetosExtensao = await ProjetoExtensao.find({titulo: filtro.titulo})
-                .skip(filtro.offset)
-                .limit(filtro.limit);
-                return projetosExtensao;
+            if(filtro.titulo !== null) {
+                const titulo = new RegExp(filtro.titulo);
+                query.titulo = { $regex: titulo, $options: 'i' };
             }
 
-            return projetosExtensao;
+            try {
+
+                const projetos = await ProjetoExtensao.find(query)
+                .skip(filtro.offset)
+                .limit(filtro.limit);
+
+                return projetos;
+
+            } catch(e) {
+                console.log(`Ocorreu um erro: ${e}`);
+            }
+
         }
     }
 }

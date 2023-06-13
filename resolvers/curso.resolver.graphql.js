@@ -3,41 +3,39 @@ const { enumModalideCursoParaTextoValido, enumNaturezaParticipacaoParaTextoValid
 
 module.exports = {
     Query: {
-        cursos: async (_, args) => {
+        curso: async (_, args) => {
             const {filtro} = args.filtros;
+            const query = {};
 
-            const aplicarFiltroPorCodigo = filtro.codigo !== null;
-            const aplicarFiltroPorNaturezaParticipacao = filtro.natureza_participacao !== null;
-            const aplicarFiltroPorModalidade = filtro.modalidade !== null;
-
-            let cursos = await Curso.find({});
-            skip(filtro.offset).
-            limit(filtro.limit);
-
-            if(aplicarFiltroPorCodigo) {
-                cursos = await Curso.find({codigo: filtro.codigo});
-                skip(filtro.offset).
-                limit(filtro.limit);
-                return cursos;
+            if(filtro.codigo !== null) {
+                query.codigo = filtro.codigo;
             }
 
-            if(aplicarFiltroPorModalidade) {
-                let modalidade = enumModalideCursoParaTextoValido(filtro.modalidade);
-                cursos = await Curso.find({modalidade});
-                skip(filtro.offset).
-                limit(filtro.limit);
-                return cursos;
+            if(filtro.natureza_participacao !== null) {
+                const participacao = enumNaturezaParticipacaoParaTextoValido(filtro.natureza_participacao);
+                query.natureza_participacao = participacao;
             }
 
-            if(aplicarFiltroPorNaturezaParticipacao) {
-                let natureza_participacao = enumNaturezaParticipacaoParaTextoValido(filtro.natureza_participacao);
-                cursos = await Curso.find({natureza_participacao});
-                skip(filtro.offset).
-                limit(filtro.limit);
-                return cursos;
+            if(filtro.modalidade !== null) {
+                const modalidade = enumModalideCursoParaTextoValido(filtro.modalidade);
+                query.modalidade = modalidade;
             }
 
-            return cursos;
+            if(filtro.nome !== null) {
+                const nome = new RegExp(filtro.nome);
+                query.nome = { $regex: nome, $options: 'i' };
+            }
+
+            try {
+                const cursos = await Curso.find(query)
+                .skip(filtro.offset)
+                .limit(filtro.limit);
+
+                return cursos !== [] ? cursos : [];
+            } catch(e) {
+                console.log(`Ocorreu um erro: ${e}`);
+            }
+
         }
     }
 };

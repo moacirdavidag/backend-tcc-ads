@@ -5,9 +5,20 @@ module.exports = {
         versoes: async (_, args) => {
             const {filtro} = args.filtros;
 
-            return await Versao.find({})
-            .skip(filtro.offset)
-            .limit(filtro.limit);
+            const query = {};
+
+            try {
+
+                const versoes = await Versao.find(query)
+                .skip(filtro.offset)
+                .limit(filtro.limit);
+
+                return versoes;
+
+            } catch(e) {
+                console.log(`Ocorreu um erro: ${e}!`)
+            }
+
         }
     }
 }

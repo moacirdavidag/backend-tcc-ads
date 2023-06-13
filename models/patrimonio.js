@@ -15,6 +15,6 @@ const patrimonioSchema = new mongoose.Schema({
     valor_liquido_contabil: {type: Number, required: true}
 });
 
-const Patrimonio = mongoose.model('patrimonio', patrimonioSchema);
+const Patrimonio = mongoose.model('patrimonios', patrimonioSchema);
 
 module.exports = Patrimonio;
