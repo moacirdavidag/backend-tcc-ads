@@ -6,7 +6,6 @@ const CursoModules = require('./modules/curso.module.graphql');
 const ServidorModules = require('./modules/servidor.module.graphql');
 const PatrimonioModules = require('./modules/patrimonio.module.graphql');
 const SetorModules = require('./modules/setor.module.graphql');
-const MatrizModules = require('./modules/matriz.module.graphql');
 const VersoesSuapModules = require('./modules/versoes-suap.module.graphql');
 const ProjetoExtensaoModules = require('./modules/projeto-extensao.module.graphql');
 const ProjetoPesquisaModules = require('./modules/projeto-pesquisa.module.graphql');
@@ -14,7 +13,7 @@ const ProgramaModules = require('./modules/programa.module.graphql');
 
 const application = createApplication({
     modules: [AlunoModules, BolsaModules, CampiModules, CursoModules, ServidorModules, 
-    PatrimonioModules, SetorModules, MatrizModules, VersoesSuapModules, 
+    PatrimonioModules, SetorModules, VersoesSuapModules, 
     ProjetoExtensaoModules, ProjetoPesquisaModules, ProgramaModules]
 })
 

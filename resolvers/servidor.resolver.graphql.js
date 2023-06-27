@@ -13,21 +13,21 @@ module.exports = {
             }
 
             if(filtro.cargo !== null) {
-                const cargo = new RegExp(filtro.cargo);
-                query.cargo = { $regex: cargo, $options: 'i' };
+                const cargo = new RegExp("\^" + filtro.cargo);
+                query.cargo_emprego = { $regex: cargo, $options: 'i' };
             }
 
             if(filtro.matricula !== null) {
                 query.matricula = filtro.matricula;
             }
 
+
             try {
 
                 const servidores = await Servidor.find(query)
                 .skip(filtro.offset)
                 .limit(filtro.limit);
-
-                return servidores;
+                return servidores;  
 
             } catch(e) {
                 console.log(`Ocorreu um erro: ${e}`);

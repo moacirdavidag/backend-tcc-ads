@@ -2,7 +2,7 @@ const { gql } = require('graphql-modules');
 
 module.exports = gql`
     type Query {
-        versoes(filtros: FiltrosVersoes): [Versao],
+        versoes(filtros: InputsVersoes): [Versao],
     }
 
     type Versao {

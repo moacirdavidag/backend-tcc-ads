@@ -18,40 +18,40 @@ module.exports = gql`
     } 
 
     type AtendimentoPorCampus {
-      REITORIA: Int @fetch(from:"Poke ball"),
-      CAMPUS_CABEDELO: Int @fetch(from:"CAMPUS CABEDELO"),
-      CAMPUS_CAJAZEIRAS: Int @fetch(from:"CAMPUS CAJAZEIRAS"),
-      CAMPUS_CAMPINA_GRANDE: Int @fetch(from:"CAMPUS CAMPINA GRANDE"),
-      CAMPUS_GUARABIRA: Int @fetch(from:"CAMPUS GUARABIRA"),
-      CAMPUS_PRINCESA_ISABEL: Int @fetch(from:"CAMPUS PRINCESA ISABEL"),
-      CAMPUS_MONTEIRO: Int @fetch(from:"CAMPUS MONTEIRO"),
-      CAMPUS_PICUI: Int @fetch(from:"CAMPUS PICUÍ"),
-      CAMPUS_SANTA_RITA: Int @fetch(from:"CAMPUS SANTA RITA"),
-      CAMPUS_CATOLE_DO_ROCHA: Int @fetch(from:"CAMPUS CATOLÉ DO ROCHA"),
-      CAMPUS_ITAPORANGA: Int @fetch(from:"CAMPUS ITAPORANGA"),
-      CAMPUS_JOAO_PESSOA: Int @fetch(from:"CAMPUS JOÃO PESSOA"),
-      CAMPUS_SOUSA: Int @fetch(from:"CAMPUS SOUSA"),
-      CAMPUS_PATOS: Int @fetch(from:"CAMPUS PATOS"),
-      CAMPUS_ITABAIANA: Int @fetch(from:"CAMPUS ITABAIANA")        
+      REITORIA: Int @fetch(from: "Poke ball"),
+      CAMPUS_CABEDELO: Int @fetch(from: "CAMPUS CABEDELO"),
+      CAMPUS_CAJAZEIRAS: Int @fetch(from: "CAMPUS CAJAZEIRAS"),
+      CAMPUS_CAMPINA_GRANDE: Int @fetch(from: "CAMPUS CAMPINA GRANDE"),
+      CAMPUS_GUARABIRA: Int @fetch(from: "CAMPUS GUARABIRA"),
+      CAMPUS_PRINCESA_ISABEL: Int @fetch(from: "CAMPUS PRINCESA ISABEL"),
+      CAMPUS_MONTEIRO: Int @fetch(from: "CAMPUS MONTEIRO"),
+      CAMPUS_PICUI: Int @fetch(from: "CAMPUS PICUÍ"),
+      CAMPUS_SANTA_RITA: Int @fetch(from: "CAMPUS SANTA RITA"),
+      CAMPUS_CATOLE_DO_ROCHA: Int @fetch(from: "CAMPUS CATOLÉ DO ROCHA"),
+      CAMPUS_ITAPORANGA: Int @fetch(from: "CAMPUS ITAPORANGA"),
+      CAMPUS_JOAO_PESSOA: Int @fetch(from: "CAMPUS JOÃO PESSOA"),
+      CAMPUS_SOUSA: Int @fetch(from: "CAMPUS SOUSA"),
+      CAMPUS_PATOS: Int @fetch(from: "CAMPUS PATOS"),
+      CAMPUS_ITABAIANA: Int @fetch(from: "CAMPUS ITABAIANA")        
     }
 
-    # type PeriodoInscricaoPorCampus {
-    #     REITORIA: [DadosProgramaAssistencia]!,
-    #     CAMPUS CABEDELO: [DadosProgramaAssistencia]!,
-    #     CAMPUS CAJAZEIRAS: [DadosProgramaAssistencia]!,
-    #     CAMPUS CAMPINA GRANDE: [DadosProgramaAssistencia]!,
-    #     CAMPUS GUARABIRA: [DadosProgramaAssistencia]!,
-    #     CAMPUS PRINCESA ISABEL: [DadosProgramaAssistencia]!,
-    #     CAMPUS MONTEIRO: [DadosProgramaAssistencia]!,
-    #     CAMPUS PICUÍ: [DadosProgramaAssistencia]!,
-    #     CAMPUS SANTA RITA: [DadosProgramaAssistencia]!,
-    #     CAMPUS CATOLÉ DO ROCHA: [DadosProgramaAssistencia]!,
-    #     CAMPUS ITAPORANGA: [DadosProgramaAssistencia]!,
-    #     CAMPUS JOÃO PESSOA: [DadosProgramaAssistencia]!,
-    #     CAMPUS SOUSA: [DadosProgramaAssistencia]!,
-    #     CAMPUS PATOS: [DadosProgramaAssistencia]!,
-    #     CAMPUS ITABAIANA: [DadosProgramaAssistencia]!,
-    # }
+    type PeriodoInscricaoPorCampus {
+        REITORIA: [DadosProgramaAssistencia] @fetch(from: "Poke ball"),
+      CAMPUS_CABEDELO: [DadosProgramaAssistencia] @fetch(from: "CAMPUS CABEDELO"),
+      CAMPUS_CAJAZEIRAS: [DadosProgramaAssistencia] @fetch(from: "CAMPUS CAJAZEIRAS"),
+      CAMPUS_CAMPINA_GRANDE: [DadosProgramaAssistencia] @fetch(from: "CAMPUS CAMPINA GRANDE"),
+      CAMPUS_GUARABIRA: [DadosProgramaAssistencia] @fetch(from: "CAMPUS GUARABIRA"),
+      CAMPUS_PRINCESA_ISABEL: [DadosProgramaAssistencia] @fetch(from: "CAMPUS PRINCESA ISABEL"),
+      CAMPUS_MONTEIRO: [DadosProgramaAssistencia] @fetch(from: "CAMPUS MONTEIRO"),
+      CAMPUS_PICUI: [DadosProgramaAssistencia] @fetch(from: "CAMPUS PICUÍ"),
+      CAMPUS_SANTA_RITA: [DadosProgramaAssistencia] @fetch(from: "CAMPUS SANTA RITA"),
+      CAMPUS_CATOLE_DO_ROCHA: [DadosProgramaAssistencia] @fetch(from: "CAMPUS CATOLÉ DO ROCHA"),
+      CAMPUS_ITAPORANGA: [DadosProgramaAssistencia] @fetch(from: "CAMPUS ITAPORANGA"),
+      CAMPUS_JOAO_PESSOA: [DadosProgramaAssistencia] @fetch(from: "CAMPUS JOÃO PESSOA"),
+      CAMPUS_SOUSA: [DadosProgramaAssistencia] @fetch(from: "CAMPUS SOUSA"),
+      CAMPUS_PATOS: [DadosProgramaAssistencia] @fetch(from: "CAMPUS PATOS"),
+      CAMPUS_ITABAIANA: [DadosProgramaAssistencia] @fetch(from: "CAMPUS ITABAIANA")
+    }
     
     type DadosProgramaAssistencia {
         titulo: String!,

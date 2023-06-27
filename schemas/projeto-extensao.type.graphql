@@ -2,7 +2,7 @@ const { gql } = require('graphql-modules');
 
 module.exports = gql`
     type Query {
-        projetosDeExtensao(filtros: FiltrosProjetoExtensao): [ProjetoExtensao]
+        projetosDeExtensao(filtros: InputsProjetoExtensao): [ProjetoExtensao]
     }
 
     type ProjetoExtensao {

@@ -2,7 +2,7 @@ const { gql } = require('graphql-modules');
 
 module.exports = gql`
     type Query {
-        projetosDePesquisa(filtros: FiltrosProjetoPesquisa): [ProjetoPesquisa]
+        projetosDePesquisa(filtros: InputsProjetoPesquisa): [ProjetoPesquisa]
     }
 
     type ProjetoPesquisa {
@@ -16,6 +16,7 @@ module.exports = gql`
         area_conhecimento: String,
         resumo: String,
         justificativa: String,
+        resultados_esperados: String,
         participantes: [Participantes]!,
         valor_total_executado: Float,
         aprovado: Boolean

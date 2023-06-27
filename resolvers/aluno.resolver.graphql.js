@@ -23,20 +23,20 @@ module.exports = {
 
             if (filtro.curso !== null) {
                 const curso = new RegExp(filtro.curso);
-                query["curso.nome"] = { $regex: curso, $options: 'i' };
+                Object.assign(query, {"curso.nome": {$regex: curso, $options: 'i' }});
             }
 
             if (filtro.nome !== null) {
-                const nome = new RegExp(filtro.nome);
+                const nome = new RegExp('\^' + filtro.nome);
                 query.nome = { $regex: nome, $options: 'i' };
             }
+
 
             try {
                 const alunos = await Aluno.find(query)
                 .skip(filtro.offset)
                 .limit(filtro.limit);
-
-                return alunos !== [] ? alunos : [];
+                return alunos;
             } catch(e) {
                 console.log(`Ocorreu um erro: ${e}`);
             }

@@ -9,17 +9,17 @@ module.exports = {
 
             if(filtro.uo !== null) {
                 const uo = new RegExp(filtro.uo);
-                query.uo = { $regex: uo, $options: 'i' };
+                Object.assign(query, {"uo.nome": { $regex: uo, $options: 'i' }});
             }
 
             if(filtro.foco !== null) {
                 const foco = new RegExp(filtro.foco);
-                query.foco = { $regex: foco, $options: 'i' };
+                query.foco_tecnologico = { $regex: foco, $options: 'i' };
             }
 
             if(filtro.area !== null) {
                 const area = new RegExp(filtro.area);
-                query.area = { $regex: area, $options: 'i' };
+                query.area_conhecimento = { $regex: area, $options: 'i' };
             }
 
             if(filtro.titulo !== null) {
