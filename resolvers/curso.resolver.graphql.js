@@ -23,7 +23,7 @@ module.exports = {
 
             if(filtro.nome !== null) {
                 const nome = new RegExp(filtro.nome);
-                query.nome = { $regex: nome, $options: 'i' };
+                query.descricao = { $regex: nome, $options: 'i' };
             }
 
             try {
