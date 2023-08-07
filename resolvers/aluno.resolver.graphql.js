@@ -6,7 +6,7 @@ module.exports = {
         alunos: async (_, args) => {
             const { filtro } = args.filtros;
             const query = {};
-
+            
             if (filtro.cota !== null) {
                 const cota = enumCotaParaTextoValido(filtro.cota);
                 query.cota = cota;
@@ -31,6 +31,7 @@ module.exports = {
                 query.nome = { $regex: nome, $options: 'i' };
             }
 
+            console.log(query);
 
             try {
                 const alunos = await Aluno.find(query)

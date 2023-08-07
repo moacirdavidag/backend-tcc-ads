@@ -24,10 +24,28 @@ module.exports = gql`
         enum Cota {
             ESCOLA_PUBLICA,
             ESCOLA_PUBLICA_PPI,
+            ESCOLA_PUBLICA_PCD,
+            ESCOLA_PUBLICA_PPI_PCD,
+            ESCOLA_PUBLICA_RENDA_15,
+            ESCOLA_PUBLICA_RENDA_15_PCD,
+            ESCOLA_PUBLICA_RENDA_15_PPI,
+            ESCOLA_PUBLICA_RENDA_15_PPI_PCD,
             NENHUMA,
         }
 
         enum Situacao {
+            AFASTADO,
+            AGUARDANDO_COLACAO_GRAU,
+            AGUARDANDO_ENADE,
+            AGUARDANDO_SEMINARIO,
+            CONCLUDENTE,
+            EGRESSO,
+            ESTAGIARIO_CONCLUDENTE,
+            FALECIDO,
+            INTERCAMBIO,
+            JUBILADO,
+            MATRICULA_VINCULO_INSTITUCIONAL,
+            NAO_CONCLUIDO,
             MATRICULADO,
             EVASAO,
             CANCELADO,
@@ -36,7 +54,8 @@ module.exports = gql`
             CANCELAMENTO_COMPULSORIO,
             TRANCADO,
             TRANCADO_VOLUNTARIAMENTE,
-            TRANSFERIDO_EXTERNO
+            TRANSFERIDO_EXTERNO,
+            TRANSFERIDO_INTERNO
         }
 
         input FiltrosAluno {

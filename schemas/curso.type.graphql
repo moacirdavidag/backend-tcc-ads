@@ -13,13 +13,13 @@ module.exports = gql`
         descricao: String!,
         diretoria: String!,
         natureza_participacao: String!,
-        eixo: String, #alguns cursos retornam null - deixa?
+        eixo: String, 
         modalidade: String!,
-        resolucao_criacao: String, #nem todos cursos tem esse campo preenchido
-        coordenador: String #nem todos os cursos tem esse campo preenchido,
+        resolucao_criacao: String, 
+        coordenador: String 
         matriz_vingente: CursoMatrizVingente,
         matrizes: [String!]!,
-        ch: Int! #int é o melhor tipo?
+        ch: Int! 
     }
 
     type CursoMatrizVingente {
@@ -28,13 +28,16 @@ module.exports = gql`
     }
 
     enum Modalidade {
+        CONCOMITANTE,
+        FIC,
         TECNOLOGIA,
         LICENCIATURA,
         BACHARELADO,
         ESPECIALIZACAO,
         SUBSEQUENTE,
         INTEGRADO,
-        INTEGRADO_EJA
+        INTEGRADO_EJA,
+        MESTRADO
     }
 
     enum Participacao {

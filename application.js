@@ -9,12 +9,11 @@ const SetorModules = require('./modules/setor.module.graphql');
 const VersoesSuapModules = require('./modules/versoes-suap.module.graphql');
 const ProjetoExtensaoModules = require('./modules/projeto-extensao.module.graphql');
 const ProjetoPesquisaModules = require('./modules/projeto-pesquisa.module.graphql');
-const ProgramaModules = require('./modules/programa.module.graphql');
 
 const application = createApplication({
     modules: [AlunoModules, BolsaModules, CampiModules, CursoModules, ServidorModules, 
     PatrimonioModules, SetorModules, VersoesSuapModules, 
-    ProjetoExtensaoModules, ProjetoPesquisaModules, ProgramaModules]
+    ProjetoExtensaoModules, ProjetoPesquisaModules]
 })
 
 module.exports = application;

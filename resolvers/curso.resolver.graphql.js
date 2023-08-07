@@ -31,7 +31,7 @@ module.exports = {
                 .skip(filtro.offset)
                 .limit(filtro.limit);
 
-                return cursos !== [] ? cursos : [];
+                return cursos ? cursos : [];
             } catch(e) {
                 console.log(`Ocorreu um erro: ${e}`);
             }

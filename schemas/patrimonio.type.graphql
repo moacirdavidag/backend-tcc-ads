@@ -15,7 +15,7 @@ module.exports = gql`
         valor_liquido_contabil: Float,
         situacao: String,
         estado_conservacao: String,
-        campus: CampusPatrimonio
+        campus: CampusPatrimonio,
     }
 
     type CampusPatrimonio {
@@ -24,11 +24,12 @@ module.exports = gql`
         nome: String
     }
 
+
     input FiltrosPatrimonio {
         limit: Int,
         offset: Int,
         numero: Int,
-        campus: String
+        campus: String,
     }
 
     input InputsPatrimonio {
